@@ -3,6 +3,7 @@ import { AgGridReact } from 'ag-grid-react';
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 import {format} from 'date-fns';
+import Button from '@mui/material/Button';
 
 export default function TrainingList() {
     
@@ -17,7 +18,14 @@ export default function TrainingList() {
         {field: 'customer.lastname', headerName: 'Lastname', sortable: true, filter: true},
         {field: 'activity', headerName: 'Activity', sortable: true, filter: true},
         {field: 'date', headerName: 'Date', sortable: true, filter: true, valueFormatter:dateFormatter} ,
-        {field: 'duration', headerName: 'Duration (min.)', sortable: true, filter: true}
+        {field: 'duration', headerName: 'Duration (min.)', sortable: true, filter: true, width:180},
+        {cellRenderer: params => 
+            <Button 
+                size="small" 
+                variant="contained" 
+                color="error" 
+                onClick={() => deleteTraining(params.data)}> Delete </Button>, 
+                width:100}
         
     ])
 
@@ -37,8 +45,21 @@ export default function TrainingList() {
         .catch(err => console.error(err))
     }
 
+    const deleteTraining = (data) => {
+        if(window.confirm("Delete training?")) {
+            fetch('https://customerrest.herokuapp.com/api/trainings/' + data.id, {method: 'DELETE'})
+                .then(response => {
+                    if(response.ok)
+                        getTrainings();
+                    else
+                        alert("Something went wrong")
 
-    return(<div className='ag-theme-material' style={{height:600, width: '70%', margin: 'auto'}}>
+                })
+            }
+    }
+
+
+    return(<div className='ag-theme-material' style={{height:600, width: '85%', margin: 'auto'}}>
         <AgGridReact
         rowData={trainings}
         columnDefs={columnDefs}
