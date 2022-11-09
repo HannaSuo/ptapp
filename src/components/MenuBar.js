@@ -35,39 +35,38 @@ export default function MenuBar() {
 
   return (
     <div>
-        
         <div>
-      <List
-        component="nav"
+          <List
+            component="nav"
       >
-        <ListItem
-          button
-          id="button"
-          aria-haspopup="listbox"
-          aria-controls="lock-menu"
-          aria-label="Dashboard"
-          aria-expanded={open ? 'true' : undefined}
-          onClick={handleClickListItem}
+            <ListItem
+              button
+              id="button"
+              aria-haspopup="listbox"
+              aria-controls="lock-menu"
+              aria-label="Dashboard"
+              aria-expanded={open ? 'true' : undefined}
+              onClick={handleClickListItem}
         >
             <ListItemIcon>
                 <MenuRoundedIcon />
             </ListItemIcon>
-          <ListItemText
+            <ListItemText
             primary="Menu"
-          />
-        </ListItem>
-      </List>
-      <Menu
-        id="lock-menu"
-        anchorEl={anchorEl}
-        open={open}
-        onClose={handleClose}
-        MenuListProps={{
-          'aria-labelledby': 'lock-button',
-          role: 'listbox',
+            />
+            </ListItem>
+            </List>
+            <Menu
+            id="lock-menu"
+            anchorEl={anchorEl}
+            open={open}
+            onClose={handleClose}
+            MenuListProps={{
+              'aria-labelledby': 'lock-button',
+              role: 'listbox',
         }}
       >
-        {options.map((option, index) => (
+          {options.map((option, index) => (
           <MenuItem
             key={option}
             selected={index === selectedIndex}
@@ -76,13 +75,13 @@ export default function MenuBar() {
             {option}
           </MenuItem>
         ))}
-      </Menu>
-      </div>
-      <div>
+        </Menu>
+    </div>
+    <div>
       {selectedIndex === 0 && <div><TrainingList/></div>}   
       {selectedIndex === 1 && <div><CustomerList/></div>}  
-      </div>
-      </div>
+    </div>
+  </div>
 
   );
 }

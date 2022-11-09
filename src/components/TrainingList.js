@@ -1,9 +1,12 @@
 import React, {useState, useEffect} from 'react';
 import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/styles/ag-grid.css';
-import 'ag-grid-community/styles/ag-theme-material.css';
 import {format} from 'date-fns';
 import Button from '@mui/material/Button';
+import { API_URL } from '../constants';
+
+import 'ag-grid-community/styles/ag-grid.css';
+import 'ag-grid-community/styles/ag-theme-material.css';
+
 
 export default function TrainingList() {
     
@@ -47,7 +50,7 @@ export default function TrainingList() {
 
     const deleteTraining = (data) => {
         if(window.confirm("Delete training?")) {
-            fetch('https://customerrest.herokuapp.com/api/trainings/' + data.id, {method: 'DELETE'})
+            fetch(API_URL + '/trainings/' + data.id, {method: 'DELETE'})
                 .then(response => {
                     if(response.ok)
                         getTrainings();
