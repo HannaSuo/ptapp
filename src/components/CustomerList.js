@@ -1,8 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { API_URL } from '../constants';
 
 import Button from '@mui/material/Button';
+import FileDownloadIcon from '@mui/icons-material/FileDownload';
 
 import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
@@ -12,6 +13,12 @@ import EditCustomer from './EditCustomer';
 import AddTraining from './AddTraining';
 
 export default function CustomerList() {
+
+    const gridRef = useRef();
+
+    const getColumns = () => {
+        return({columnKeys: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone']});
+    }
 
     const [customers, setCustomers] = useState([]);
 
@@ -121,15 +128,22 @@ export default function CustomerList() {
 
     }
 
+    const exportToCsv = useCallback(() => {
+        const exportColumns = getColumns();
+        gridRef.current.api.exportDataAsCsv(exportColumns);
+    }, []);
+
     return (
         <>
             <AddCustomer addCustomer={addCustomer} />
+            <Button startIcon={<FileDownloadIcon/>} size="small" onClick={exportToCsv}>Export to CSV</Button>
             <div className='ag-theme-material' style={{ height: 600, width: '100%', margin: 'auto' }}>
                 <AgGridReact
+                    ref={gridRef}
                     rowData={customers}
                     columnDefs={columnDefs}
                     pagination={true}
-                    paginationPageSize={10} />
+                    paginationPageSize={8} />
 
             </div>
         </>)

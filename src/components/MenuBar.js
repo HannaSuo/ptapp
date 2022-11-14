@@ -6,13 +6,15 @@ import MenuItem from '@mui/material/MenuItem';
 import Menu from '@mui/material/Menu';
 import TrainingList from './TrainingList';
 import CustomerList from './CustomerList';
+import CalendarPage from './CalendarPage';
 import MenuRoundedIcon from '@mui/icons-material/MenuRounded';
 import ListItemIcon from '@mui/material/ListItemIcon';
 
 
 const options = [
   'Trainings',
-  'Customers'
+  'Customers',
+  'Calendar'
 ];
 
 export default function MenuBar() {
@@ -79,7 +81,8 @@ export default function MenuBar() {
     </div>
     <div>
       {selectedIndex === 0 && <div><TrainingList/></div>}   
-      {selectedIndex === 1 && <div><CustomerList/></div>}  
+      {selectedIndex === 1 && <div><CustomerList/></div>}
+      {selectedIndex === 2 && <div><CalendarPage/></div>}  
     </div>
   </div>
 
