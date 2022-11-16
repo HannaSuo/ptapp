@@ -82,7 +82,7 @@ export default function MenuBar() {
     <div>
       {selectedIndex === 0 && <div><TrainingList/></div>}   
       {selectedIndex === 1 && <div><CustomerList/></div>}
-      {selectedIndex === 2 && <div><CalendarPage/></div>}  
+      {selectedIndex === 2 && <div><CalendarPage /></div>}  
     </div>
   </div>
 

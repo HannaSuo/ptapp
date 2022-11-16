@@ -135,16 +135,17 @@ export default function CustomerList() {
 
     return (
         <>
+            <div>
             <AddCustomer addCustomer={addCustomer} />
-            <Button startIcon={<FileDownloadIcon/>} size="small" onClick={exportToCsv}>Export to CSV</Button>
+            </div>
             <div className='ag-theme-material' style={{ height: 600, width: '100%', margin: 'auto' }}>
+            <Button startIcon={<FileDownloadIcon/>} size="small" variant="contained" style={{margin: '5px' }}onClick={exportToCsv}>Export to CSV</Button>
                 <AgGridReact
                     ref={gridRef}
                     rowData={customers}
                     columnDefs={columnDefs}
                     pagination={true}
                     paginationPageSize={8} />
-
             </div>
         </>)
 

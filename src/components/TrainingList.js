@@ -8,6 +8,7 @@ import 'ag-grid-community/styles/ag-grid.css';
 import 'ag-grid-community/styles/ag-theme-material.css';
 
 
+
 export default function TrainingList() {
     
     const [trainings, setTrainings] = useState([]);
@@ -62,12 +63,15 @@ export default function TrainingList() {
     }
 
 
-    return(<div className='ag-theme-material' style={{height:600, width: '85%', margin: 'auto'}}>
+    return(
+    <>
+    <div className='ag-theme-material' style={{height:600, width: '85%', margin: 'auto'}}>
         <AgGridReact
         rowData={trainings}
         columnDefs={columnDefs}
         pagination={true}
         paginationPageSize={10} />
 
-    </div>)
+    </div>
+    </>)
 }
