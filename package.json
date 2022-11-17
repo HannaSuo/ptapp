@@ -1,7 +1,7 @@
 {
   "name": "ptapp",
   "version": "0.1.0",
-  "homepage": "https://hannasuo.github.io/ptapp",
+  "homepage": "https://HannaSuo.github.io/ptapp",
   "private": true,
   "dependencies": {
     "@emotion/react": "^11.10.5",
