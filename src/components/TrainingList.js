@@ -71,7 +71,6 @@ export default function TrainingList() {
         columnDefs={columnDefs}
         pagination={true}
         paginationPageSize={10} />
-
     </div>
     </>)
 }

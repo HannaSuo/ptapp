@@ -1,6 +1,7 @@
 import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { AgGridReact } from 'ag-grid-react';
 import { API_URL } from '../constants';
+import moment from 'moment'
 
 import Button from '@mui/material/Button';
 import FileDownloadIcon from '@mui/icons-material/FileDownload';
@@ -16,8 +17,10 @@ export default function CustomerList() {
 
     const gridRef = useRef();
 
-    const getColumns = () => {
-        return({columnKeys: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone']});
+    const getCsvParams = () => {
+        const now = moment().format('DDMMYY')
+        return({columnKeys: ['firstname', 'lastname', 'streetaddress', 'postcode', 'city', 'email', 'phone'],
+                fileName:'customers' + now + '.csv'});
     }
 
     const [customers, setCustomers] = useState([]);
@@ -129,8 +132,8 @@ export default function CustomerList() {
     }
 
     const exportToCsv = useCallback(() => {
-        const exportColumns = getColumns();
-        gridRef.current.api.exportDataAsCsv(exportColumns);
+        const params = getCsvParams();
+        gridRef.current.api.exportDataAsCsv(params);
     }, []);
 
     return (
