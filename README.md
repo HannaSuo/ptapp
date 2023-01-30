@@ -1,3 +1,6 @@
+Created a frontend for existing backend using REST API & React
+
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
